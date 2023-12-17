@@ -1,8 +1,13 @@
 import React from 'react';
 
 import './namesComponent.css';
-export const NamesComponent = () => {
+import namesList from '../../store/names'
+
+export const NamesComponent = (props) => {
+
     return <div className='names-component'>
-        'Name Component'
+        {namesList.defaultNamesList.map((element)=>{
+            return <div>{element.name}</div>
+        })}
     </div>;
 }
