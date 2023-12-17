@@ -9,7 +9,6 @@ import {Filters} from "../filters/filters";
 export const MainWrapper = observer(() => {
     return <div className='main-wrapper'>
         <Filters/>
-
         <NamesComponent />
     </div>;
 })
