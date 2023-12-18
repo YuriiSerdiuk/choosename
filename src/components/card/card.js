@@ -10,27 +10,30 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function MediaCard() {
-
-    return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-                sx={{ height: 140 }}
-                image="/static/images/cards/contemplative-reptile.jpg"
-                title="green iguana"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {namesList.defaultNamesList[3].name}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button variant="outlined" startIcon={<DeleteIcon />}>
-                    Delete
-                </Button>
-                <Button variant="outlined" startIcon={<FavoriteIcon />}>
-                    Add to favorite
-                </Button>
-            </CardActions>
-        </Card>
-    );
+  const addToFavorites = (name) => {
+    namesList.addToFavorites(name || '');
+  }
+  const name = namesList.defaultNamesList[3].name;
+  return (
+    <Card sx={{maxWidth: 345}}>
+      <CardMedia
+        sx={{height: 140}}
+        image="/static/images/cards/contemplative-reptile.jpg"
+        title="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {name}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button variant="outlined" startIcon={<DeleteIcon/>}>
+          Delete
+        </Button>
+        <Button onClick={() => addToFavorites(name)} variant="outlined" startIcon={<FavoriteIcon/>}>
+          Add to favorite
+        </Button>
+      </CardActions>
+    </Card>
+  );
 }
