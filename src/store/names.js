@@ -4,6 +4,7 @@ import {namesList} from "../constants/names";
 class NamesList {
   defaultNamesList = namesList;
   favoriteNames = [];
+  removedNames = [];
 
   constructor() {
     makeAutoObservable(this)
