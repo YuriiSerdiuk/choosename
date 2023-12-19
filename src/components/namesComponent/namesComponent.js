@@ -10,10 +10,13 @@ import MediaCard from "../card/card";
 
 export const NamesComponent = observer((props) => {
 
-    return <div className='names-component'>
-        <span>Favorites : {namesList.favoriteNames.length}</span>
-        <div className='card'>
-            <MediaCard/>
+    return <div>
+        <div>Favorites : {namesList.favoriteNames.length}</div>
+        <div>names : {namesList.defaultNamesList.length}</div>
+        <div className='names-component'>
+            <div className='card'>
+                <MediaCard/>
+            </div>
         </div>
     </div>;
 })

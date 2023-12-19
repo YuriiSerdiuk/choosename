@@ -10,8 +10,15 @@ class NamesList {
     makeAutoObservable(this)
   }
 
-  addToFavorites(name) {
-    this.favoriteNames.push(name);
+  addToFavorites(addedName) {
+    this.defaultNamesList = this.defaultNamesList.filter(({name}) => name !== addedName);
+    this.favoriteNames.push(addedName);
+
+  }
+
+  removeNameFromNamesList(removedName) {
+    this.removedNames.push(removedName);
+    this.defaultNamesList = this.defaultNamesList.filter(({name}) => name !== removedName);
   }
 
   removeFromFavorites(removedName) {

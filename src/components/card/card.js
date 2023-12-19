@@ -13,6 +13,10 @@ export default function MediaCard() {
   const addToFavorites = (name) => {
     namesList.addToFavorites(name || '');
   }
+  const removeNameFromNamesList = (name) => {
+    namesList.removeNameFromNamesList(name || '');
+  }
+
   const name = namesList.defaultNamesList[3].name;
   return (
     <Card sx={{maxWidth: 345}}>
@@ -27,7 +31,7 @@ export default function MediaCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="outlined" startIcon={<DeleteIcon/>}>
+        <Button onClick={() => removeNameFromNamesList(name)} variant="outlined" startIcon={<DeleteIcon/>}>
           Delete
         </Button>
         <Button onClick={() => addToFavorites(name)} variant="outlined" startIcon={<FavoriteIcon/>}>
