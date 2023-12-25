@@ -2,6 +2,8 @@ import {makeAutoObservable} from "mobx"
 import {namesListFemale, namesListMale} from "../constants/names";
 import gender from './gender';
 import {GENDER_BOY} from "../constants/constants";
+import {getFromLocalStorage, setToLocalStorage} from "../helpers/helpers";
+import {favoritesNames, genderCategory} from "../constants/localStorage";
 
 class NamesList {
   defaultNamesList = [];
@@ -10,6 +12,7 @@ class NamesList {
 
   constructor() {
     this.changeGender();
+    this.favoriteNames = getFromLocalStorage(favoritesNames) || [];
     makeAutoObservable(this)
   }
 
@@ -20,11 +23,13 @@ class NamesList {
   addToFavorites(addedName) {
     this.favoriteNames.push(addedName);
     this.defaultNamesList = this.defaultNamesList.filter((obj)=>obj.name !== addedName );
+    setToLocalStorage(favoritesNames,this.favoriteNames);
   }
 
   removeNameFromNamesList(removedName) {
     this.removedNames.push(removedName);
     this.defaultNamesList = this.defaultNamesList.filter((obj)=>obj.name !== removedName );
+    // setToLocalStorage(genderCategory,this.removedNames);
   }
 
   removeFromFavorites(removedName) {

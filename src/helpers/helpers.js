@@ -1,4 +1,4 @@
-import {randomNames, favoritesNames, deletedNames, genderCategory} from '../constants/localStorage'
+import {favoritesNames, deletedNames, genderCategory, generalNames} from '../constants/localStorage'
 import {GENDER_BOY} from "../constants/constants";
 import gender from "../store/gender";
 
@@ -7,11 +7,11 @@ export const setToLocalStorage = (key, value) => {
 }
 
 export const getFromLocalStorage = (key) => {
-  localStorage.getItem(key);
+ return  JSON.parse(localStorage.getItem(key))
 }
 
 export const getInitLocalstorageDataEmpty = () => {
-  return !(localStorage.getItem(randomNames)
+  return !(localStorage.getItem(generalNames)
     && localStorage.getItem(favoritesNames)
     && localStorage.getItem(deletedNames)
     && localStorage.getItem(genderCategory)
@@ -19,7 +19,7 @@ export const getInitLocalstorageDataEmpty = () => {
 }
 
 export const setDefaultLocalstorageData = () => {
-  setToLocalStorage(randomNames, []);
+  setToLocalStorage(generalNames, []);
   setToLocalStorage(favoritesNames, []);
   setToLocalStorage(deletedNames, []);
   setToLocalStorage(genderCategory, GENDER_BOY);
