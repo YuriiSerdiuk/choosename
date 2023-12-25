@@ -1,6 +1,8 @@
 import {makeAutoObservable} from "mobx";
 import namesList from '../store/names'
 import {GENDER_BOY, GENDER_GIRL} from "../constants/constants";
+import {setToLocalStorage} from "../helpers/helpers";
+import {genderCategory} from "../constants/localStorage";
 
 const gender = {
   boy: GENDER_BOY,
@@ -8,7 +10,7 @@ const gender = {
 }
 
 class Gender {
-  gender = gender.boy
+  gender = JSON.parse(localStorage.getItem(genderCategory)) || gender.boy;
 
   constructor() {
     makeAutoObservable(this)
@@ -16,11 +18,13 @@ class Gender {
 
   setBoyGender() {
     this.gender = gender.boy;
+    setToLocalStorage(genderCategory,gender.boy);
     namesList.changeGender();
   }
 
   setGirlGender() {
     this.gender = gender.girl;
+    setToLocalStorage(genderCategory,gender.girl);
     namesList.changeGender();
   }
 

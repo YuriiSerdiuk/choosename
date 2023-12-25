@@ -16,16 +16,17 @@ import {observer} from "mobx-react-lite";
 import gender from '../../store/gender';
 
 import './app-bar.css';
+import {GENDER_BOY} from "../../constants/constants";
+import {isMasculineGender} from "../../helpers/helpers";
 
- export const  MenuAppBar = observer(()=> {
-  const [auth, setAuth] = React.useState(false);
+export const MenuAppBar = observer(() => {
+  const [isMasculine, setIsMasculine] = React.useState(isMasculineGender());
   const [anchorEl, setAnchorEl] = React.useState(null);
 
 
-
   const handleChange = (event) => {
-    gender.gender === 'BOY' ? gender.setGirlGender() : gender.setBoyGender();
-    setAuth(event.target.checked);
+    isMasculineGender() ? gender.setGirlGender() : gender.setBoyGender();
+    setIsMasculine(event.target.checked);
   };
 
   const handleMenu = (event) => {
@@ -37,19 +38,19 @@ import './app-bar.css';
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }} >
-      <AppBar color={auth? "secondary" :'primary'} >
+    <Box sx={{flexGrow: 1}}>
+      <AppBar color={isMasculine ? 'primary' : "secondary"}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{mr: 2}}
           >
-            <MenuIcon />
+            <MenuIcon/>
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
             Choose name
           </Typography>
           <div>
@@ -57,7 +58,7 @@ import './app-bar.css';
               <FormControlLabel
                 control={
                   <Switch
-                    checked={auth}
+                    checked={isMasculine}
                     onChange={handleChange}
                     aria-label="login switch"
                     color="default"
@@ -67,36 +68,36 @@ import './app-bar.css';
               />
             </FormGroup>
           </div>
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle/>
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
     </Box>
