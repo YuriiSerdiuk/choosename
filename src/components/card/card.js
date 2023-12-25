@@ -13,14 +13,13 @@ import gender from '../../store/gender';
 import {observer} from "mobx-react-lite";
 
 export default observer(function MediaCard() {
-  const genderCode = gender.gender === "BOY" ? 'm' : 'f';
-  const name = namesList.defaultNamesList[0][genderCode].name;
+  const name = namesList.defaultNamesList[0].name;
   const addToFavorites = () => {
 
-    namesList.addToFavorites(name, genderCode);
+    namesList.addToFavorites(name);
   }
   const removeNameFromNamesList = () => {
-    namesList.removeNameFromNamesList(name, genderCode);
+    namesList.removeNameFromNamesList(name);
   }
 
 

@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
+import namesList from '../store/names'
+import {GENDER_BOY, GENDER_GIRL} from "../constants/constants";
 
-const GENDER_BOY = 'BOY';
-const GENDER_GIRL = 'GIRL'
 const gender = {
   boy: GENDER_BOY,
   girl: GENDER_GIRL
@@ -16,10 +16,12 @@ class Gender {
 
   setBoyGender() {
     this.gender = gender.boy;
+    namesList.changeGender();
   }
 
   setGirlGender() {
     this.gender = gender.girl;
+    namesList.changeGender();
   }
 
 

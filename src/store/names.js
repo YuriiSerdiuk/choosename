@@ -1,24 +1,30 @@
 import {makeAutoObservable} from "mobx"
-import {namesList} from "../constants/names";
-import {Login} from "@mui/icons-material";
+import {namesListFemale, namesListMale} from "../constants/names";
+import gender from './gender';
+import {GENDER_BOY} from "../constants/constants";
 
 class NamesList {
-  defaultNamesList = namesList;
+  defaultNamesList = [];
   favoriteNames = [];
   removedNames = [];
 
   constructor() {
+    this.changeGender();
     makeAutoObservable(this)
   }
 
-  addToFavorites(addedName, genderCode) {
-    this.defaultNamesList = this.defaultNamesList.filter((ob) => ob[genderCode].name !== addedName)
-    this.favoriteNames.push(addedName);
+  changeGender() {
+    this.defaultNamesList = gender.gender === GENDER_BOY ? namesListMale : namesListFemale;
   }
 
-  removeNameFromNamesList(removedName, genderCode) {
+  addToFavorites(addedName) {
+    this.favoriteNames.push(addedName);
+    this.defaultNamesList = this.defaultNamesList.filter((obj)=>obj.name !== addedName );
+  }
+
+  removeNameFromNamesList(removedName) {
     this.removedNames.push(removedName);
-    this.defaultNamesList = this.defaultNamesList.filter((ob) => ob[genderCode].name !== removedName)
+    this.defaultNamesList = this.defaultNamesList.filter((obj)=>obj.name !== removedName );
   }
 
   removeFromFavorites(removedName) {
