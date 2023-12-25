@@ -11,14 +11,20 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import {observer} from "mobx-react-lite";
+
+import gender from '../../store/gender';
 
 import './app-bar.css';
 
-export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
+ export const  MenuAppBar = observer(()=> {
+  const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+
+
   const handleChange = (event) => {
+    gender.gender === 'BOY' ? gender.setGirlGender() : gender.setBoyGender();
     setAuth(event.target.checked);
   };
 
@@ -57,7 +63,7 @@ export default function MenuAppBar() {
                     color="default"
                   />
                 }
-                label={auth ? 'Girl' : 'Boy'}
+                label={gender.gender}
               />
             </FormGroup>
           </div>
@@ -95,4 +101,4 @@ export default function MenuAppBar() {
       </AppBar>
     </Box>
   );
-}
+});

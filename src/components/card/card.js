@@ -9,15 +9,21 @@ import namesList from '../../store/names'
 import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default function MediaCard() {
-  const addToFavorites = (name) => {
-    namesList.addToFavorites(name || '');
+import gender from '../../store/gender';
+import {observer} from "mobx-react-lite";
+
+export default observer(function MediaCard() {
+  const genderCode = gender.gender === "BOY" ? 'm' : 'f';
+  const name = namesList.defaultNamesList[0][genderCode].name;
+  const addToFavorites = () => {
+
+    namesList.addToFavorites(name, genderCode);
   }
-  const removeNameFromNamesList = (name) => {
-    namesList.removeNameFromNamesList(name || '');
+  const removeNameFromNamesList = () => {
+    namesList.removeNameFromNamesList(name, genderCode);
   }
 
-  const name = namesList.defaultNamesList[3].name;
+
   return (
     <Card sx={{maxWidth: 345}}>
       <CardMedia
@@ -31,13 +37,14 @@ export default function MediaCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={() => removeNameFromNamesList(name)} variant="outlined" startIcon={<DeleteIcon/>}>
+        <Button onClick={() => removeNameFromNamesList(namesList.defaultNamesList[0])} variant="outlined"
+                startIcon={<DeleteIcon/>}>
           Delete
         </Button>
-        <Button onClick={() => addToFavorites(name)} variant="outlined" startIcon={<FavoriteIcon/>}>
+        <Button onClick={addToFavorites} variant="outlined" startIcon={<FavoriteIcon/>}>
           Add to favorite
         </Button>
       </CardActions>
     </Card>
   );
-}
+})

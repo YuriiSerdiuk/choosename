@@ -1,5 +1,6 @@
 import {makeAutoObservable} from "mobx"
 import {namesList} from "../constants/names";
+import {Login} from "@mui/icons-material";
 
 class NamesList {
   defaultNamesList = namesList;
@@ -10,15 +11,14 @@ class NamesList {
     makeAutoObservable(this)
   }
 
-  addToFavorites(addedName) {
-    this.defaultNamesList = this.defaultNamesList.filter(({name}) => name !== addedName);
+  addToFavorites(addedName, genderCode) {
+    this.defaultNamesList = this.defaultNamesList.filter((ob) => ob[genderCode].name !== addedName)
     this.favoriteNames.push(addedName);
-
   }
 
-  removeNameFromNamesList(removedName) {
+  removeNameFromNamesList(removedName, genderCode) {
     this.removedNames.push(removedName);
-    this.defaultNamesList = this.defaultNamesList.filter(({name}) => name !== removedName);
+    this.defaultNamesList = this.defaultNamesList.filter((ob) => ob[genderCode].name !== removedName)
   }
 
   removeFromFavorites(removedName) {

@@ -1,4 +1,4 @@
-export const namesList = [
+export const namesListSimple = [
   {"name": "Emma"},
   {"name": "Olivia"},
   {"name": "Ava"},
@@ -194,7 +194,7 @@ export const alphabetOrderNameList = {
   я: []
 };
 
-export const namesList2 = [
+export const namesList = [
   {
     m: {"name": "Liam"},
     f: {"name": "Olivia"}
