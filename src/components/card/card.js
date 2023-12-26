@@ -13,7 +13,7 @@ import gender from '../../store/gender';
 import {observer} from "mobx-react-lite";
 
 export default observer(function MediaCard() {
-  const name = namesList.defaultNamesList[0].name;
+  const name = namesList.defaultNamesList[0]?.name;
   const addToFavorites = () => {
 
     namesList.addToFavorites(name);
@@ -21,7 +21,7 @@ export default observer(function MediaCard() {
   const removeNameFromNamesList = () => {
     namesList.removeNameFromNamesList(name);
   }
-
+console.log(name)
 
   return (
     <Card sx={{maxWidth: 345}}>
@@ -32,7 +32,7 @@ export default observer(function MediaCard() {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {name}
+          {name || 'the list is empty'}
         </Typography>
       </CardContent>
       <CardActions>
