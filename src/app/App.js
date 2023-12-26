@@ -3,6 +3,8 @@ import {MainWrapper} from "../components/mainWrapper/mainWrapper";
 
 import './App.css';
 import {getInitLocalstorageDataEmpty, setDefaultLocalstorageData} from "../helpers/helpers";
+import SignUp from "../components/sign-up/SignUp";
+import SignInSide from "../components/sign-in/SignInSide";
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
   return (
     <div className="App">
       <MainWrapper/>
+      {/*<SignUp/>*/}
+      {/*<SignInSide/>*/}
     </div>
   );
 }
