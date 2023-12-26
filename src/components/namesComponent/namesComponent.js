@@ -9,7 +9,7 @@ import MediaCard from "../card/card";
 
 export const NamesComponent = observer((props) => {
 
-  return <div style={{marginBottom: '25%'}}>
+  return <div style={{marginBottom: '15%'}}>
     <div>Favorites : {namesList.favoriteNames.length}</div>
     <div>names : {namesList.defaultNamesList.length}</div>
     <div className='names-component'>
