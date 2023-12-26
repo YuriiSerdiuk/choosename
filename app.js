@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require("cors");
 const path = require("path");
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 4000;
 
 app.use(cors());
@@ -15,6 +16,13 @@ app.get("*", (req, res) => {
 
 async function start() {
     try {
+       // connect to mongoose DB
+        mongoose.connect(
+          "mongodb+srv://yurii-serdiuk:nRw7QyKxLI8rrpfV@choose-name.8qehrew.mongodb.net/?retryWrites=true&w=majority"
+        );
+        console.log("connect to database");
+
+        //run server
         app.listen(PORT,()=>{
             console.log(`http://localhost:4000/`);
             console.log(`server started on port ${PORT}`);
