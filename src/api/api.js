@@ -40,11 +40,9 @@ class Api {
     return await this.post(URL_PATHS.SignIn, params);
   }
 
-  // async getSignUp(params) {
-  //   const data = await this.post(URL_PATHS.SignUp, params);
-  //   console.log("data", data);
-  //   return data;
-  // }
+  async signUp(params) {
+    return await this.post(URL_PATHS.SignUp, params);
+  }
 
   // async getWakeUp() {
   //   const data = await this.get(URL_PATHS.Test);

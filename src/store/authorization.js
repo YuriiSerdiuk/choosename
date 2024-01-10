@@ -15,20 +15,19 @@ class Authorization {
       email: email,
       password: password,
     }).then(()=>{
-      console.log('loggedIn',{
-        email: email,
-        password: password,
-      });
+      this.loggedIn = true;
     })
-    // this.loggedIn = true;
   }
 
   logOut() {
     this.loggedIn = false;
   }
 
-  signIn() {
-
+  signIn({email, password}) {
+    Api.signUp({
+      email: email,
+      password: password,
+    })
   }
 }
 
