@@ -15,13 +15,11 @@ function App() {
     }
   }, []);
 
-  return (
-    <div className="App">
-      <MainWrapper/>
-      {/*<SignUp/>*/}
-      {/*<SignInSide/>*/}
-    </div>
-  );
+  return (<div className="App">
+    <MainWrapper/>
+    {/*<SignUp/>*/}
+    {/*<SignInSide/>*/}
+  </div>);
 }
 
 export default App;
