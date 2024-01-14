@@ -42,27 +42,24 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-  //   // if (!user) {
-  //   //   return res.status(400).json({ message: "User not found" });
-  //   // }
-  //   //
-  //   // const isMatch = await bcrypt.compare(password, user.password);
-  //   //
-  //   // if (!isMatch) {
-  //   //   return res.status(400).json({ message: "Invalid password, try again" });
-  //   // }
-  //   //
-  //   // const token = jwt.sign({ userId: user.id }, "jwtSecret", {
-  //   //   expiresIn: "1h",
-  //   // });
-  //
-  //   // res.json({ token, userId: user.id });
-    console.log('user',user);
-    res.json({ email: email, password: password });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid password, try again" });
+    }
+
+    const token = jwt.sign({ userId: user.id }, "jwtSecret", {
+      expiresIn: "1h",
+    });
+
+    res.json({ token, userId: user.id });
   } catch (e) {
     res.status(500).json({ message: "Some problems with authorization" });
   }
-
 });
 
 // /auth/delete

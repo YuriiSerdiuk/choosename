@@ -1,8 +1,8 @@
-import {useEffect} from "react";
-import {MainWrapper} from "../components/mainWrapper/mainWrapper";
+import { useEffect } from "react";
+import { MainWrapper } from "../components/mainWrapper/mainWrapper";
 
 import './App.css';
-import {getInitLocalstorageDataEmpty, setDefaultLocalstorageData} from "../helpers/helpers";
+import { getInitLocalstorageDataEmpty, setDefaultLocalstorageData } from "../helpers/helpers";
 import SignUp from "../components/sign-up/SignUp";
 import SignInSide from "../components/sign-in/SignInSide";
 
@@ -16,9 +16,9 @@ function App() {
   }, []);
 
   return (<div className="App">
-    <MainWrapper/>
+    <MainWrapper />
     {/*<SignUp/>*/}
-    {/*<SignInSide/>*/}
+    {/* <SignInSide/> */}
   </div>);
 }
 
