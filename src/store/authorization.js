@@ -12,21 +12,22 @@ class Authorization {
   }
 
   loggedIn({ email, password }) {
-
     Api.getSignIn({
       email: email,
       password: password,
     }).then(({ data }) => {
       const { token, userId } = data;
-      console.log(data);
       this.token = token;
       this.userId = `${userId}`;
       this.isLoggedIn = true;
+      return this;
     });
   }
 
   logOut() {
-    this.loggedIn = false;
+    this.isLoggedIn = false;
+    this.token = null;
+    this.userId = null;
   }
 
   signUp({ email, password }) {

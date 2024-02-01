@@ -11,17 +11,24 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
+import { useNavigate } from 'react-router-dom';
+
 
 import gender from '../../store/gender';
+import authorization from '../../store/authorization';
 
 import './app-bar.css';
-import {GENDER_BOY} from "../../constants/constants";
-import {isMasculineGender} from "../../helpers/helpers";
+import { GENDER_BOY } from "../../constants/constants";
+import { isMasculineGender } from "../../helpers/helpers";
 
 export const MenuAppBar = observer(() => {
   const [isMasculine, setIsMasculine] = React.useState(isMasculineGender());
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const navigate = useNavigate();
+
+  const { token } = authorization;
 
 
   const handleChange = (event) => {
@@ -34,11 +41,25 @@ export const MenuAppBar = observer(() => {
   };
 
   const handleClose = () => {
+    // navigate('/signin')
+    setAnchorEl(null);
+  };
+
+  const handleLogIn = () => {
+    navigate('/signin');
+
+    setAnchorEl(null);
+  };
+
+
+  const handleLogOut = () => {
+    console.log('LOg Out');
+    authorization.logOut();
     setAnchorEl(null);
   };
 
   return (
-    <Box sx={{flexGrow: 1}}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar color={isMasculine ? 'primary' : "secondary"}>
         <Toolbar>
           <IconButton
@@ -46,11 +67,11 @@ export const MenuAppBar = observer(() => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{mr: 2}}
+            sx={{ mr: 2 }}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Choose name
           </Typography>
           <div>
@@ -77,7 +98,7 @@ export const MenuAppBar = observer(() => {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle/>
+              <AccountCircle />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -94,7 +115,7 @@ export const MenuAppBar = observer(() => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={token ? handleLogOut : handleLogIn}>{token ? 'Log Out' : 'Log in'}</MenuItem>
               <MenuItem onClick={handleClose}>My account</MenuItem>
             </Menu>
           </div>

@@ -1,14 +1,36 @@
 import { useEffect } from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
 import { MainWrapper } from "../components/mainWrapper/mainWrapper";
 
-import './App.css';
 import { getInitLocalstorageDataEmpty, setDefaultLocalstorageData } from "../helpers/helpers";
 import SignUp from "../components/sign-up/SignUp";
 import SignInSide from "../components/sign-in/SignInSide";
 
+import './App.css';
+
 function App() {
 
-  useEffect(() => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <MainWrapper />,
+      errorElement: <div>Ops 404</div>,
+    },
+    {
+      path: "/signin",
+      element: <SignInSide />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
+    },
+  ]);
+
+  useEffect(async () => {
     // set default localstorage data
     if (getInitLocalstorageDataEmpty()) {
       setDefaultLocalstorageData();
@@ -16,9 +38,7 @@ function App() {
   }, []);
 
   return (<div className="App">
-    <MainWrapper />
-    {/*<SignUp/>*/}
-    {/* <SignInSide/> */}
+    <RouterProvider router={router} />
   </div>);
 }
 
