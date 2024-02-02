@@ -53,7 +53,6 @@ export const MenuAppBar = observer(() => {
 
 
   const handleLogOut = () => {
-    console.log('LOg Out');
     authorization.logOut();
     setAnchorEl(null);
   };
@@ -116,7 +115,7 @@ export const MenuAppBar = observer(() => {
               onClose={handleClose}
             >
               <MenuItem onClick={token ? handleLogOut : handleLogIn}>{token ? 'Log Out' : 'Log in'}</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
             </Menu>
           </div>
         </Toolbar>

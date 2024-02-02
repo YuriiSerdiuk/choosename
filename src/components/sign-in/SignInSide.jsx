@@ -114,10 +114,6 @@ const SignInSide = observer(() => {
                 id="password"
                 autoComplete="current-password"
               />
-              {/*<FormControlLabel*/}
-              {/*  control={<Checkbox value="remember" color="primary"/>}*/}
-              {/*  label="Remember me"*/}
-              {/*/>*/}
               <Button
                 type="submit"
                 fullWidth
@@ -133,7 +129,9 @@ const SignInSide = observer(() => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="#" onClick={() => {
+                    navigate('/signup');
+                  }} variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

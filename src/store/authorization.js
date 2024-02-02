@@ -34,6 +34,12 @@ class Authorization {
     Api.signUp({
       email: email,
       password: password,
+    }).then((result) => {
+      console.log(result)
+    }).catch((error) => {
+      const { response } = error;
+      const { data } = response;
+      console.log(data)
     })
   }
 }
