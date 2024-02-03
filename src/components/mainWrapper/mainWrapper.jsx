@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { NamesComponent } from "../namesComponent/namesComponent";
 // import { Filters } from "../filters/filters";
 import { MenuAppBar } from "../app-bar/app-bar";
+import MyApp from '../snackbar/Snackbar'
 
 import './mainWrapper.css';
 
@@ -20,6 +21,7 @@ export const MainWrapper = observer(() => {
 
     return <div className='main-wrapper'>
         {/*<Filters/>*/}
+        <MyApp />
         <MenuAppBar />
         <NamesComponent />
     </div>;
