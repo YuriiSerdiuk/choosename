@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 export default function MyApp() {
     const { enqueueSnackbar } = useSnackbar();
@@ -8,20 +8,20 @@ export default function MyApp() {
     const handleClick = () => {
         enqueueSnackbar('I love snacks.');
     };
-    React.useEffect(() => {
-        setTimeout(() => {
-            console.log('This is a success message!')
-            enqueueSnackbar('This is a success message!', { variant: 'success' });
-        }, 5000);
-        setTimeout(() => {
-            console.log('This is a success message!')
-            enqueueSnackbar('This is a success message!', { variant: 'success' });
-        }, 7000);
-        setTimeout(() => {
-            console.log('This is a success message!')
-            enqueueSnackbar('This is a success message!', { variant: 'success' });
-        }, 10000);
-    }, []);
+    // React.useEffect(() => {
+    //     setTimeout(() => {
+    //         console.log('This is a success message!')
+    //         enqueueSnackbar('This is a success message!', { variant: 'success' });
+    //     }, 5000);
+    //     setTimeout(() => {
+    //         console.log('This is a success message!')
+    //         enqueueSnackbar('This is a success message!', { variant: 'success' });
+    //     }, 7000);
+    //     setTimeout(() => {
+    //         console.log('This is a success message!')
+    //         enqueueSnackbar('This is a success message!', { variant: 'success' });
+    //     }, 10000);
+    // }, []);
 
 
     const handleClickVariant = (variant) => () => {

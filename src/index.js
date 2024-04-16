@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { SnackbarProvider } from 'notistack';
 
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
