@@ -13,14 +13,45 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { observer } from "mobx-react-lite";
 import { useNavigate } from 'react-router-dom';
-
+import { styled } from "@mui/material/styles";
+import Badge from "@mui/material/Badge";
 
 import gender from '../../store/gender';
 import authorization from '../../store/authorization';
 
 import './app-bar.css';
-import { GENDER_BOY } from "../../constants/constants";
+
 import { isMasculineGender } from "../../helpers/helpers";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "#44b700",
+    color: "#44b700",
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    "&::after": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      borderRadius: "50%",
+      animation: "ripple 1.2s infinite ease-in-out",
+      border: "1px solid currentColor",
+      content: '""',
+    },
+  },
+  "@keyframes ripple": {
+    "0%": {
+      transform: "scale(.8)",
+      opacity: 1,
+    },
+    "100%": {
+      transform: "scale(2.4)",
+      opacity: 0,
+    },
+  },
+}));
+
 
 export const MenuAppBar = observer(() => {
   const [isMasculine, setIsMasculine] = React.useState(isMasculineGender());
@@ -28,8 +59,7 @@ export const MenuAppBar = observer(() => {
 
   const navigate = useNavigate();
 
-  const { token } = authorization;
-
+  const { token, isLoggedIn } = authorization;
 
   const handleChange = (event) => {
     isMasculineGender() ? gender.setGirlGender() : gender.setBoyGender();
@@ -97,7 +127,14 @@ export const MenuAppBar = observer(() => {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle />
+              <StyledBadge
+                overlap="circular"
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                variant="dot"
+                invisible={!isLoggedIn}
+              >
+                <AccountCircle />
+              </StyledBadge>
             </IconButton>
             <Menu
               id="menu-appbar"

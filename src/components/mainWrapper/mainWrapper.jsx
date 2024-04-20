@@ -30,12 +30,9 @@ export const MainWrapper = observer(() => {
     // }, []);
 
     useEffect(() => {
-        const { token, isLoggedIn } = authorization;
+        const { token } = authorization;
 
         token && enqueueSnackbar('Login success', { variant: 'success' });
-
-        console.log('authorization', token);
-        console.log('isLoggedIn', isLoggedIn);
     }, [authorization]);
 
     return <div className='main-wrapper'>

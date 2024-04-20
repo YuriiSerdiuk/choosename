@@ -17,9 +17,9 @@ class Authorization {
       password: password,
     }).then(({ data }) => {
       const { token, userId } = data;
+      this.isLoggedIn = true;
       this.token = token;
       this.userId = `${userId}`;
-      this.isLoggedIn = true;
       return this;
     });
   }
