@@ -16,6 +16,7 @@ app.use(express.static(__dirname + '/public'));
 
 // routes
 app.use("/auth", require("./routes/auth.routes"));
+app.use("/names", require("./routes/names.rotes"));
 
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "build", "index.html"));
@@ -23,18 +24,18 @@ app.get("*", (req, res) => {
 
 async function start() {
     try {
-       // connect to mongoose DB
+        // connect to mongoose DB
         await mongoose.connect(
-          "mongodb+srv://yurii-serdiuk:nRw7QyKxLI8rrpfV@choose-name.8qehrew.mongodb.net/?retryWrites=true&w=majority"
+            "mongodb+srv://yurii-serdiuk:nRw7QyKxLI8rrpfV@choose-name.8qehrew.mongodb.net/?retryWrites=true&w=majority"
         );
         console.log("connect to database");
 
         //run server
-        app.listen(PORT,()=>{
+        app.listen(PORT, () => {
             console.log(`http://localhost:4000/`);
             console.log(`server started on port ${PORT}`);
-        }) ;
-    }catch (e) {
+        });
+    } catch (e) {
         console.log(e);
     }
 }

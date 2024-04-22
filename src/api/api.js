@@ -1,6 +1,7 @@
 import axios from "axios";
 // eslint-disable-next-line
 // import {URL, DEV_URL, URL_PATHS} from "../constants/api.constants";
+import { endpoints } from '../constants/endpoints';
 const URL = 'http://localhost:4000/';
 
 const URL_PATHS = {
@@ -20,7 +21,7 @@ class Api {
   });
 
   async get(url, params) {
-    return await this.instance.get(url, {params});
+    return await this.instance.get(url, { params });
   }
 
   async post(url, data, options) {
@@ -42,6 +43,14 @@ class Api {
 
   async signUp(params) {
     return await this.post(URL_PATHS.SignUp, params);
+  }
+
+  async CreateNewList(params) {
+    return await this.post(endpoints.CreateNewList, params);
+  }
+
+  async Test(params) {
+    return await this.post(endpoints.Names, params);
   }
 
   // async getWakeUp() {
