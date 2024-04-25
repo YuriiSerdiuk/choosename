@@ -5,4 +5,5 @@ export const endpoints = {
     Auth: '/auth',
     Names: '/names',
     CreateNewList: '/names/create',
+    GetList: '/names/list',
 }

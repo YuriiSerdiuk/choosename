@@ -30,7 +30,7 @@ function App() {
     },
   ]);
 
-  useEffect(async () => {
+  useEffect( () => {
     // set default localstorage data
     if (getInitLocalstorageDataEmpty()) {
       setDefaultLocalstorageData();

@@ -45,12 +45,12 @@ class Api {
     return await this.post(URL_PATHS.SignUp, params);
   }
 
-  async CreateNewList(params) {
+  async createNewList(params) {
     return await this.post(endpoints.CreateNewList, params);
   }
 
-  async Test(params) {
-    return await this.post(endpoints.Names, params);
+  async getList(params) {
+    return await this.get(endpoints.GetList, params);
   }
 
   // async getWakeUp() {
