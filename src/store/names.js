@@ -24,6 +24,8 @@ class NamesList {
     const data = await Api.getList({id: nameListId.GLOBAL});
     this.defaultNamesList = data?.data?.list?.children[gender.gender === GENDER_BOY ? 'male' : 'female'] || [];
 
+    // todo configured with localstorage for unlogged user
+
     // const namesList = gender.gender === GENDER_BOY ? namesListMale : namesListFemale;
     // setToLocalStorage(generalNames, namesList);
     // const namesToRemove = getFromLocalStorage(deletedNames) || [];
@@ -31,8 +33,6 @@ class NamesList {
     // this.defaultNamesList = namesList
     //   .filter(nameObj => !namesToRemove.includes(nameObj.name))
     //   .filter((nameObj) => !favoriteNames.includes(nameObj.name));
-
-
   }
 
   addToFavorites(addedName) {
