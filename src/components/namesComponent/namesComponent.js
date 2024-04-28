@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {observer} from "mobx-react-lite";
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 
-import Api from '../../api';
+// import Api from '../../api';
 
 import namesList from '../../store/names'
 import MediaCard from "../card/card";
@@ -11,17 +11,6 @@ import MediaCard from "../card/card";
 import './namesComponent.css';
 
 export const NamesComponent = observer((props) => {
-
-  // useEffect(async () => {
-
-  //   // todo make request get list data
-  //   // todo add functionality update list names
-  //   // check correct working
-
-  //   const data = await Api.getList(nameListId.GLOBAL);
-
-  //   console.log('inside namesComponent', data);
-  // }, []);
 
   return <div style={{marginBottom: '15%'}}>
     {/*<div>*/}

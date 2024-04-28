@@ -3,7 +3,7 @@ import {makeAutoObservable} from "mobx"
 // import {namesListFemale, namesListMale} from "../constants/names";
 import {GENDER_BOY, nameListId} from "../constants/constants";
 import {getFromLocalStorage, setToLocalStorage} from "../helpers/helpers";
-import {deletedNames, favoritesNames, generalNames} from "../constants/localStorage";
+import {deletedNames, favoritesNames} from "../constants/localStorage";
 import gender from './gender';
 
 import Api from '../api';
@@ -52,4 +52,5 @@ class NamesList {
   }
 }
 
+// eslint-disable-next-line
 export default new NamesList();

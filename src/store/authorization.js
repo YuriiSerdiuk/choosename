@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable} from "mobx";
 
 import Api from '../api';
 
@@ -11,16 +11,16 @@ class Authorization {
     makeAutoObservable(this);
   }
 
-  loggedIn({ email, password }) {
+  loggedIn({email, password}) {
     Api.getSignIn({
       email: email,
       password: password,
-    }).then(({ data }) => {
-      const { token, userId } = data;
+    }).then(({data}) => {
+      const {token, userId} = data;
+
       this.isLoggedIn = true;
       this.token = token;
-      this.userId = `${userId}`;
-      return this;
+      this.userId = userId;
     });
   }
 
@@ -30,16 +30,22 @@ class Authorization {
     this.userId = null;
   }
 
-  signUp({ email, password }) {
+  signUp({email, password,}) {
     Api.signUp({
       email: email,
       password: password,
-    }).then((result) => {
-      console.log(result)
+      names: {
+        liked: [],
+        unliked: [],
+      }
+    }).then((res) => {
+      const {token, user} = res.data;
+
+      this.isLoggedIn = true;
+      this.token = token;
+      this.userId = user._id;
     }).catch((error) => {
-      const { response } = error;
-      const { data } = response;
-      console.log(data)
+      console.log(error)
     })
   }
 }

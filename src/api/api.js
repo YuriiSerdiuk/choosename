@@ -1,19 +1,10 @@
 import axios from "axios";
-// eslint-disable-next-line
-// import {URL, DEV_URL, URL_PATHS} from "../constants/api.constants";
-import { endpoints } from '../constants/endpoints';
-const URL = 'http://localhost:4000/';
 
-const URL_PATHS = {
-  URL: 'http://localhost:4000/',
-  SignUp: "/auth/register",
-  SignIn: "/auth/login",
-  Auth: '/auth'
-}
+import {endpoints} from '../constants/endpoints';
 
 class Api {
   instance = axios.create({
-    baseURL: URL_PATHS.URL,
+    baseURL: endpoints.URL,
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
@@ -21,7 +12,7 @@ class Api {
   });
 
   async get(url, params) {
-    return await this.instance.get(url, { params });
+    return await this.instance.get(url, {params});
   }
 
   async post(url, data, options) {
@@ -38,11 +29,11 @@ class Api {
   }
 
   async getSignIn(params) {
-    return await this.post(URL_PATHS.SignIn, params);
+    return await this.post(endpoints.SignIn, params);
   }
 
   async signUp(params) {
-    return await this.post(URL_PATHS.SignUp, params);
+    return await this.post(endpoints.SignUp, params);
   }
 
   async createNewList(params) {
@@ -53,11 +44,13 @@ class Api {
     return await this.get(endpoints.GetList, params);
   }
 
-  // async getWakeUp() {
-  //   const data = await this.get(URL_PATHS.Test);
-  //   return data;
-  // }
+  async addLikedName(params) {
+    return await this.put(endpoints.AddLikedName, params);
+  }
 
+  async addUnlikedName(params) {
+    return await this.put(endpoints.AddUnlikedName, params);
+  }
 }
 
 export default new Api();
