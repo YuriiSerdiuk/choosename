@@ -1,8 +1,9 @@
 import { makeAutoObservable } from "mobx";
+
 import { GENDER_BOY, GENDER_GIRL } from "../constants/constants";
-import { setToLocalStorage } from "../helpers/helpers";
-import { genderCategory } from "../constants/localStorage";
-import {namesList} from "../constants/names";
+// import { setToLocalStorage } from "../helpers/helpers";
+// import { genderCategory } from "../constants/localStorage";
+// import {namesList} from "../constants/names";
 
 const gender = {
   boy: GENDER_BOY,
@@ -10,7 +11,8 @@ const gender = {
 };
 
 class Gender {
-  gender = JSON.parse(localStorage.getItem(genderCategory)) || gender.boy;
+  gender = gender.boy;
+  // gender = JSON.parse(localStorage.getItem(genderCategory)) || gender.boy;
 
   constructor() {
     makeAutoObservable(this);
@@ -18,16 +20,16 @@ class Gender {
 
   setBoyGender() {
     this.gender = gender.boy;
-    setToLocalStorage(genderCategory, gender.boy);
+    // setToLocalStorage(genderCategory, gender.boy);
     // namesList.changeGender();
   }
 
   setGirlGender() {
     this.gender = gender.girl;
-    setToLocalStorage(genderCategory, gender.girl);
+    // setToLocalStorage(genderCategory, gender.girl);
     // namesList.changeGender();
   }
 }
 
-const genderInstance = new Gender();
-export default genderInstance;
+// eslint-disable-next-line
+export default new Gender();

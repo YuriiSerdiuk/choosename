@@ -18,21 +18,54 @@ const router = Router();
 router.get('/list', async (req, res) => {
   try {
     const {id} = req.query;
-
-
     const list = await List.findOne({id});
+
     if (list) {
       res.json({list});
     } else {
       return res.status(400).json({message: "There is no list with ID"});
     }
-
-
   } catch (e) {
-    console.log(e);
+    res.status(500).json({message: "Some problems with server"});
+  }
+});
+router.get('/liked-names', async (req, res) => {
+  try {
+    const {id} = req.query;
+    console.log('req.query',req.query)
+    const candidate = await User.findById(id);
+
+    if (candidate) {
+      res.json({candidate});
+    } else {
+      return res.status(400).json({message: "There is no user found"});
+    }
+  } catch (e) {
+    res.status(500).json({message: "Some problems with server"});
   }
 });
 
+
+
+router.put('/list-add-name', async (req, res) => {
+  try{
+    const {id,gender,name} = req.body;
+    const list = await List.findOne({id});
+    console.log('list',id);
+    if (list) {
+      console.log('list',list);
+      list.children[`${gender}`].push({name});
+      list.save();
+
+      res.status(200).json({message: `${name} added to the list`});
+    } else {
+      return res.status(400).json({message: "There is no list with ID"});
+    }
+
+  }catch(err){
+    res.status(500).json({message: "Some problems with server"});
+  }
+})
 
 router.post("/create", async (req, res) => {
   try {

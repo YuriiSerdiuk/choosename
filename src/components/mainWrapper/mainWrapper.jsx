@@ -30,9 +30,10 @@ export const MainWrapper = observer(() => {
     // }, []);
 
     useEffect(() => {
-        const { token } = authorization;
+        const { isLoggedIn } = authorization;
 
-        token && enqueueSnackbar('Login success', { variant: 'success' });
+        isLoggedIn && enqueueSnackbar('Login success', { variant: 'success' });
+        // eslint-disable-next-line
     }, [authorization]);
 
     return <div className='main-wrapper'>

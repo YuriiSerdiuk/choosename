@@ -50,4 +50,5 @@ class Authorization {
   }
 }
 
+// eslint-disable-next-line
 export default new Authorization();

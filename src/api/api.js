@@ -44,12 +44,20 @@ class Api {
     return await this.get(endpoints.GetList, params);
   }
 
+  async getLikedNames(params) {
+    return await this.get(endpoints.GetLikedName, params);
+  }
+
   async addLikedName(params) {
     return await this.put(endpoints.AddLikedName, params);
   }
 
   async addUnlikedName(params) {
     return await this.put(endpoints.AddUnlikedName, params);
+  }
+
+  async addNameToList(params) {
+    return await this.put(endpoints.AddNameToList, params);
   }
 }
 

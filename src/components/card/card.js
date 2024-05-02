@@ -9,18 +9,18 @@ import namesList from '../../store/names'
 import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {useSnackbar} from 'notistack';
+import {observer} from "mobx-react-lite";
 
 import Api from '../../api';
 
 import auth from '../../store/authorization';
-import {observer} from "mobx-react-lite";
 
 export default observer(function MediaCard() {
   const {enqueueSnackbar} = useSnackbar();
   const name = namesList.defaultNamesList[0]?.name;
 
   const addToFavorites = async () => {
-    const {userId, token} = auth;
+    const {userId} = auth;
     Api.addLikedName({
       id: userId,
       name: name,
@@ -34,7 +34,7 @@ export default observer(function MediaCard() {
   }
 
   const removeNameFromNamesList = async () => {
-    const {userId, token} = auth;
+    const {userId} = auth;
     // namesList.removeNameFromNamesList(name);
     Api.addUnlikedName({
       id: userId,
@@ -47,7 +47,6 @@ export default observer(function MediaCard() {
       enqueueSnackbar('!!!', {variant: 'error'});
     })
   }
-  console.log(name)
 
   return (
     <Card sx={{maxWidth: 345}}>
