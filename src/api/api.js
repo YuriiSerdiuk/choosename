@@ -48,6 +48,11 @@ class Api {
     return await this.get(endpoints.GetLikedName, params);
   }
 
+
+  async getUnLikedNames(params) {
+    return await this.get(endpoints.GetUnLikedName, params);
+  }
+
   async addLikedName(params) {
     return await this.put(endpoints.AddLikedName, params);
   }

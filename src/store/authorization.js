@@ -1,36 +1,35 @@
-import {makeAutoObservable} from "mobx";
-
+import { makeAutoObservable, action,observable } from "mobx";
 import Api from '../api';
 
 class Authorization {
+  isLoggedIn = false;
+  token = null;
+  userId = null;
 
-  constructor(props) {
-    this.isLoggedIn = false;
-    this.token = null;
-    this.userId = null;
-    makeAutoObservable(this);
+  constructor() {
+    makeAutoObservable(this, {
+      loggedIn: action.bound,
+      logOut: action.bound,
+      signUp: action.bound
+    });
   }
 
-  loggedIn({email, password}) {
+  loggedIn({ email, password }) {
     Api.getSignIn({
       email: email,
       password: password,
-    }).then(({data}) => {
-      const {token, userId} = data;
+    }).then(({ data }) => {
+      const { token, userId } = data;
 
-      this.isLoggedIn = true;
-      this.token = token;
-      this.userId = userId;
+      this.setLoggedInState(true, token, userId);
     });
   }
 
   logOut() {
-    this.isLoggedIn = false;
-    this.token = null;
-    this.userId = null;
+    this.setLoggedInState(false, null, null);
   }
 
-  signUp({email, password,}) {
+  signUp({ email, password }) {
     Api.signUp({
       email: email,
       password: password,
@@ -39,16 +38,20 @@ class Authorization {
         unliked: [],
       }
     }).then((res) => {
-      const {token, user} = res.data;
+      const { token, user } = res.data;
 
-      this.isLoggedIn = true;
-      this.token = token;
-      this.userId = user._id;
+      this.setLoggedInState(true, token, user._id);
     }).catch((error) => {
       console.log(error)
     })
   }
+
+  // Action to modify state
+  setLoggedInState(isLoggedIn, token, userId) {
+    this.isLoggedIn = isLoggedIn;
+    this.token = token;
+    this.userId = userId;
+  }
 }
 
-// eslint-disable-next-line
 export default new Authorization();

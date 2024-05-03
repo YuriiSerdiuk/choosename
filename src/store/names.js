@@ -12,7 +12,7 @@ import Api from '../api';
 class NamesList {
   defaultNamesList = [];
   likedNames = [];
-  removedNames = [];
+  unlikedNames = [];
 
   // constructor() {
   //   this.setInnitDefaultNamesList();
@@ -26,24 +26,36 @@ class NamesList {
     this.setInnitDefaultNamesList();
     makeAutoObservable(this);
 
-    // Реакція на зміни поля gender
     reaction(
       () => gender.gender,
       () => {
         this.setInnitDefaultNamesList();
       }
     );
+
+    reaction(
+      () => authorization.isLoggedIn,
+      () => {
+        console.log('isLoggedIn');
+        this.setInnitDefaultNamesList();
+      }
+    );
   }
 
   async setInnitDefaultNamesList() {
-    const {data} = await Api.getList({id: nameListId.GLOBAL});
+    const {data: {list}} = await Api.getList({id: nameListId.GLOBAL});
+    const globalNamesArray = list?.children[gender.gender === GENDER_BOY ? 'male' : 'female'];
     if (authorization.isLoggedIn) {
-      const res = await Api.getLikedNames({id: authorization.userId});
-      this.likedNames = res.data.candidate.names.liked || [];
-      this.defaultNamesList = data?.list?.children[gender.gender === GENDER_BOY ? 'male' : 'female']
-        .filter(item => !toJS(this.likedNames).some(obj => obj.name === item.name));
+      const {data: {likedNamesArray}} = await Api.getLikedNames({id: authorization.userId});
+      const {data: {unlikedNamesArray}} = await Api.getUnLikedNames({id: authorization.userId});
+
+      this.likedNames = likedNamesArray || [];
+      this.unlikedNames = unlikedNamesArray || [];
+      this.defaultNamesList = globalNamesArray
+        .filter(item => !toJS(this.likedNames).some(obj => obj.name === item.name)
+          || !toJS(this.unlikedNames).some(obj => obj.name === item.name));
     } else {
-      this.defaultNamesList = data.list.children[gender.gender === GENDER_BOY ? 'male' : 'female'] || [];
+      this.defaultNamesList = globalNamesArray || [];
     }
 
     // todo configured with localstorage for unlogged user

@@ -29,6 +29,7 @@ router.get('/list', async (req, res) => {
     res.status(500).json({message: "Some problems with server"});
   }
 });
+
 router.get('/liked-names', async (req, res) => {
   try {
     const {id} = req.query;
@@ -36,7 +37,7 @@ router.get('/liked-names', async (req, res) => {
     const candidate = await User.findById(id);
 
     if (candidate) {
-      res.json({candidate});
+      res.json({likedNamesArray: candidate.names.liked});
     } else {
       return res.status(400).json({message: "There is no user found"});
     }
@@ -45,7 +46,22 @@ router.get('/liked-names', async (req, res) => {
   }
 });
 
+router.get('/unliked-names', async (req, res) => {
+  try {
+    const {id} = req.query;
+    console.log('req.query',req.query)
+    const candidate = await User.findById(id);
 
+    console.log('unliked', candidate);
+    if (candidate) {
+      res.json({unlikedNamesArray: candidate.names.unliked});
+    } else {
+      return res.status(400).json({message: "There is no user found"});
+    }
+  } catch (e) {
+    res.status(500).json({message: "Some problems with server"});
+  }
+});
 
 router.put('/list-add-name', async (req, res) => {
   try{

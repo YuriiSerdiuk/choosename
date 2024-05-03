@@ -10,4 +10,5 @@ export const endpoints = {
   AddLikedName: '/names/add-liked-name',
   AddUnlikedName: '/names/add-unliked-name',
   GetLikedName: '/names/liked-names',
+  GetUnLikedName: '/names/unliked-names',
 }
