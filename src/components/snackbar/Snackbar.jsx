@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { useSnackbar } from 'notistack';
 
-export default function MyApp() {
+export default function Snackbar() {
     const { enqueueSnackbar } = useSnackbar();
 
     const handleClick = () => {

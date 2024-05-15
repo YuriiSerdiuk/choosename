@@ -1,4 +1,4 @@
-import { makeAutoObservable, action,observable } from "mobx";
+import { makeAutoObservable, action } from "mobx";
 import Api from '../api';
 
 class Authorization {
@@ -54,4 +54,5 @@ class Authorization {
   }
 }
 
+// eslint-disable-next-line
 export default new Authorization();

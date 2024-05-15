@@ -66,4 +66,5 @@ class Api {
   }
 }
 
+// eslint-disable-next-line
 export default new Api();

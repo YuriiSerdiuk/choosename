@@ -1,24 +1,25 @@
 import React from 'react';
 import {observer} from "mobx-react-lite";
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
+// import {useSnackbar} from "notistack";
 
 // import Api from '../../api';
 
-import namesList from '../../store/names'
 import MediaCard from "../card/card";
-// import { nameListId } from '../../constants/constants';
+
+import namesList from '../../store/names'
+// import gender from '../../store/gender';
 
 import './namesComponent.css';
-// import {GENDER_GROUP} from "../../constants/constants";
 
-export const NamesComponent = observer((props) => {
+export const NamesComponent = observer(() => {
+  // const {enqueueSnackbar} = useSnackbar();
 
   return <div style={{marginBottom: '15%'}}>
     {/*<div>*/}
     {/*  <Button*/}
     {/*    variant="outlined"*/}
     {/*    onClick={async () => {*/}
-    {/*      console.log('add name to list');*/}
 
     {/*      // await Api.createNewList({*/}
     {/*      //   id: 'GLOBAL',*/}
@@ -30,10 +31,11 @@ export const NamesComponent = observer((props) => {
 
     {/*      // await Api.addNameToList({*/}
     {/*      //   id: 'GLOBAL',*/}
-    {/*      //   gender: GENDER_GROUP.female,*/}
-    {/*      //   name:'asdf'*/}
+    {/*      //   gender: gender.genderGroup,*/}
+    {/*      //   name:'Ezra'*/}
     {/*      // }).then((res)=>{*/}
-    {/*      //   console.log('res',res);*/}
+    {/*      //   // console.log('res', res.data.message);*/}
+    {/*      //   enqueueSnackbar(res.data.message, {variant: 'success'});*/}
     {/*      // });*/}
 
     {/*    }}*/}

@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 
 import { NamesComponent } from "../namesComponent/namesComponent";
 import { MenuAppBar } from "../app-bar/app-bar";
-import MyApp from '../snackbar/Snackbar'
+import Snackbar from '../snackbar/Snackbar'
 
 import authorization from '../../store/authorization';
 
@@ -21,7 +21,7 @@ export const MainWrapper = observer(() => {
     }, [authorization]);
 
     return <div className='main-wrapper'>
-        <MyApp />
+        <Snackbar />
         <MenuAppBar />
         <NamesComponent />
     </div>;

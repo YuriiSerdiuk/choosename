@@ -25,7 +25,7 @@ export default observer(function MediaCard() {
       id: userId,
       name: name,
     }).then((res) => {
-      console.log('res', res.data.message);
+      // console.log('res', res.data.message);
       enqueueSnackbar(res.data.message, {variant: 'success'});
     }).catch((err) => {
       console.log("error", err);

@@ -52,8 +52,8 @@ class NamesList {
       this.likedNames = likedNamesArray || [];
       this.unlikedNames = unlikedNamesArray || [];
       this.defaultNamesList = globalNamesArray
-        .filter(item => !toJS(this.likedNames).some(obj => obj.name === item.name)
-          || !toJS(this.unlikedNames).some(obj => obj.name === item.name));
+        .filter(item => !toJS(this.likedNames).some(obj => obj.name === item.name))
+        .filter(item => !toJS(this.unlikedNames).some(obj => obj.name === item.name));
     } else {
       this.defaultNamesList = globalNamesArray || [];
     }
