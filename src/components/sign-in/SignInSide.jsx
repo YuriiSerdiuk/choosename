@@ -39,7 +39,7 @@ const SignInSide = observer(() => {
 
   const { token } = authorization;
   if (token) {
-    navigate('/')
+    navigate('/');
   }
 
 
@@ -51,12 +51,6 @@ const SignInSide = observer(() => {
       email: data.get('email'),
       password: data.get('password')
     })
-
-    // registrate
-    // Authorization.signIn({
-    //   email: data.get('email'),
-    //   password: data.get('password')
-    // });
   };
 
   return (

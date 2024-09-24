@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '.env.production' });
 const express = require('express');
 const app = express();
 const cors = require("cors");
@@ -25,9 +26,7 @@ app.get("*", (req, res) => {
 async function start() {
     try {
         // connect to mongoose DB
-        await mongoose.connect(
-            "mongodb+srv://yurii-serdiuk:nRw7QyKxLI8rrpfV@choose-name.8qehrew.mongodb.net/?retryWrites=true&w=majority"
-        );
+        await mongoose.connect(process.env.mongodb);
         console.log("connect to database");
 
         //run server

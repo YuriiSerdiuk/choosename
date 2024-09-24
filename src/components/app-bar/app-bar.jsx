@@ -101,7 +101,7 @@ export const MenuAppBar = observer(() => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Choose name
+            Choose name for your kids
           </Typography>
           <div>
             <FormGroup>
